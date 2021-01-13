@@ -10,7 +10,7 @@ $ composer require chipslays/array
 
 ## Documentation
 
-### `get(array $array, $keys [, $default = null, string $separator = '.'])`
+#### `get(array $array, $keys [, $default = null, string $separator = '.'])`
 
 Get value from array using by dot notation key.
 
@@ -27,7 +27,7 @@ $name = Arr::get($array, 'user.name'); // chipslays
 $email = Arr::get($array, 'user.email', 'default@email.com'); // default@email.com 
 ```
 
-### `set(array &$array, string $keys, $value = null [, string $separator = '.']) : void`
+#### `set(array &$array, string $keys, $value = null [, string $separator = '.']) : void`
 
 Set/overwrite value in array using by dot notation key.
 
@@ -54,7 +54,7 @@ Array
 )
 ```
 
-### `has(array $array, $keys[, string $separator = '.']): bool`
+#### `has(array $array, $keys[, string $separator = '.']): bool`
 
 Check exists value in array using by dot notation key.
 
