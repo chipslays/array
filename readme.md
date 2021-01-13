@@ -54,7 +54,7 @@ Array
 )
 ```
 
-#### `has(array $array, $keys[, string $separator = '.']): bool`
+#### `has(array $array, $keys [, string $separator = '.']): bool`
 
 Check exists value in array using by dot notation key.
 
