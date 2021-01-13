@@ -4,7 +4,7 @@ Library for array  manipulate.
 
 ## Installation
 
-```php 
+```bash 
 $ composer require chipslays/array
 ```
 
