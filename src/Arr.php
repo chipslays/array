@@ -18,9 +18,9 @@ class Arr
     {
         $thisDefault = 'NOT__FOUND__4MfvLvGl:htK$ZAiRoEylHo7?CgIrCDDQWrT2qUBSazEd?mpwFPq@pWRFbtjqhHJ=R8Y!w4hujyWWNwEnsZ1VmQ?';
 
-        $keys = !is_array($keys) ? explode($separator, $keys) : $keys;
+        $keys = !is_array($keys) ? explode($separator, $keys) : (array) $keys;
 
-        while ($key = array_shift($keys)) {
+        while (($key = array_shift($keys)) !== NULL) {
             if (array_key_exists($key, $array)) {
                 $array = &$array[$key];
             } else {
@@ -73,5 +73,17 @@ class Arr
     public static function has(array $array, $keys, string $separator = '.'): bool
     {
         return self::get($array, $keys, false, $separator) ? true : false;
+    }
+
+    /**
+     * Filter the array using the given callback.
+     *
+     * @param  array  $array
+     * @param  callable  $callback
+     * @return array
+     */
+    public static function where(array $array, callable $callback)
+    {
+        return array_filter($array, $callback, ARRAY_FILTER_USE_BOTH);
     }
 }
