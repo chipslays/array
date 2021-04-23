@@ -63,10 +63,16 @@ use Chipslays\Arr\Arr;
 
 $array = [
     'user' => [
-        'name' => 'chipslays'
+        'name' => 'chipslays',
+        'string' => '',
+        'null' => null,
+        'false' => false,
     ],
 ];
 
 Arr::has($array, 'user.name'); // true
-Arr::has($array, 'user.phone'); // false
+Arr::has($array, 'user.string'); // true
+Arr::has($array, 'user.null'); // true
+Arr::has($array, 'user.false'); // true
+Arr::has($array, 'user.empty_value'); // false
 ```
