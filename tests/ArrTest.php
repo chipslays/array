@@ -50,4 +50,25 @@ final class ArrTest extends TestCase
         $this->assertTrue($hasName);
         $this->assertFalse($hasPhone);
     }
+
+    public function testArrHasEmptyValue()
+    {
+        $array = [
+            'user' => [
+                'string' => '',
+                'null' => null,
+                'false' => false
+            ],
+        ];
+
+        $hasString = Arr::has($array, 'user.string');
+        $hasNull = Arr::has($array, 'user.null');
+        $hasFalse = Arr::has($array, 'user.false');
+        $hasEmpty = Arr::has($array, 'user.empty');
+
+        $this->assertTrue($hasString);
+        $this->assertTrue($hasNull);
+        $this->assertTrue($hasFalse);
+        $this->assertFalse($hasEmpty);
+    }
 }
