@@ -4,20 +4,20 @@ namespace Chipslays\Arr;
 
 class Arr
 {
+    const NOT_FOUND = 'NOT__FOUND__4MfvLvGl:htK$ZAiRoEylHo7?CgIrCDDQWrT2qUBSazEd?mpwFPq@pWRFbtjqhHJ=R8Y!w4hujyWWNwEnsZ1VmQ?';
+
     /**
      * Get value from array using by dot notation key.
-     * 
+     *
      * @param array $array
      * @param string|array $keys
      * @param mixed $default
      * @param string $separator
-     * 
+     *
      * @return mixed
      */
     public static function get(array $array, $keys, $default = null, string $separator = '.')
     {
-        $thisDefault = 'NOT__FOUND__4MfvLvGl:htK$ZAiRoEylHo7?CgIrCDDQWrT2qUBSazEd?mpwFPq@pWRFbtjqhHJ=R8Y!w4hujyWWNwEnsZ1VmQ?';
-
         $keys = !is_array($keys) ? explode($separator, $keys) : (array) $keys;
 
         while (($key = array_shift($keys)) !== NULL) {
@@ -26,8 +26,8 @@ class Arr
             } else {
                 if ($key == '*') {
                     foreach ($array as $value) {
-                        $result = is_array($value) ? static::get($value, $keys, $thisDefault) : $thisDefault;
-                        if ($result !== $thisDefault) {
+                        $result = is_array($value) ? static::get($value, $keys, self::NOT_FOUND) : self::NOT_FOUND;
+                        if ($result !== self::NOT_FOUND) {
                             return $result;
                         }
                     }
@@ -42,12 +42,12 @@ class Arr
 
     /**
      * Set/overwrite value in array using by dot notation key.
-     * 
+     *
      * @param array $array
      * @param string $keys
      * @param mixed $value
      * @param string $separator
-     * 
+     *
      * @return void
      */
     public static function set(array &$array, string $keys, $value = null, string $separator = '.'): void
@@ -63,16 +63,18 @@ class Arr
 
     /**
      * Check exists value in array using by dot notation key.
-     * 
+     *
+     * Beware, `null`, `false` and empty string `''` will return `true`.
+     *
      * @param array $array
      * @param string|array $keys
      * @param string $separator
-     * 
+     *
      * @return boolean
      */
     public static function has(array $array, $keys, string $separator = '.'): bool
     {
-        return self::get($array, $keys, false, $separator) ? true : false;
+        return self::get($array, $keys, self::NOT_FOUND, $separator) !== self::NOT_FOUND ? true : false;
     }
 
     /**
