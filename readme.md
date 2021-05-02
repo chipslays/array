@@ -1,5 +1,8 @@
 # 🧰 Array
 
+[![Tests](https://github.com/chipslays/array/actions/workflows/tests.yml/badge.svg)](https://github.com/chipslays/array/actions/workflows/tests.yml)
+![Packagist Version](https://img.shields.io/packagist/v/chipslays/array)
+
 Library for array  manipulate.
 
 ## Installation
