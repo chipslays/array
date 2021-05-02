@@ -17,6 +17,8 @@ $ composer require chipslays/array
 
 Get value from array using by dot notation key.
 
+Has helper `arr_get()`.
+
 ```php 
 use Chipslays\Arr\Arr;
 
@@ -33,6 +35,8 @@ $email = Arr::get($array, 'user.email', 'default@email.com'); // default@email.c
 #### `set(array &$array, string $keys, $value = null [, string $separator = '.']) : void`
 
 Set/overwrite value in array using by dot notation key.
+
+Has helper `arr_set()`.
 
 ```php 
 use Chipslays\Arr\Arr;
@@ -61,6 +65,8 @@ Array
 
 Check exists value in array using by dot notation key.
 
+Has helper `arr_has()`.
+
 ```php
 use Chipslays\Arr\Arr;
 
@@ -78,4 +84,26 @@ Arr::has($array, 'user.string'); // true
 Arr::has($array, 'user.null'); // true
 Arr::has($array, 'user.false'); // true
 Arr::has($array, 'user.empty_value'); // false
+```
+
+
+#### `where(array $array, callable $callback)`
+
+Filter the array using the given callback.
+
+Has helper `arr_where()`.
+
+```php
+use Chipslays\Arr\Arr;
+
+$array = [
+    'user' => [
+        'name' => 'chipslays',
+        'string' => '',
+        'null' => null,
+        'false' => false,
+    ],
+];
+
+// todo
 ```
