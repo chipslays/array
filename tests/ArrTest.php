@@ -71,4 +71,51 @@ final class ArrTest extends TestCase
         $this->assertTrue($hasFalse);
         $this->assertFalse($hasEmpty);
     }
+
+    public function testGetMultipleValues()
+    {
+        $array = [
+            'foo' => [
+                'bar' => ['baz' => 1],
+                'bam' => ['baz' => 2],
+                'boo' => ['baz' => 3],
+            ],
+        ];
+
+        $result = Arr::get($array, 'foo.*.baz');
+
+        $this->assertEquals([1,2,3], $result);
+    }
+
+    public function testGetAnyValuesAsString()
+    {
+        $array = [
+            'foo' => [
+                'bar' => ['baz' => 1],
+            ],
+        ];
+
+        $result = Arr::get($array, 'foo.*.baz');
+
+        $this->assertEquals(1, $result);
+    }
+
+    public function testGetAnyValuesEndAsterisk()
+    {
+        $array = [
+            'foo' => [
+                'bar' => ['baz' => 1],
+                'bam' => ['baz' => 2],
+                'boo' => ['baz' => 3],
+            ],
+        ];
+
+        $result = Arr::get($array, 'foo.*');
+
+        $this->assertEquals([
+            ['baz' => 1],
+            ['baz' => 2],
+            ['baz' => 3],
+        ], $result);
+    }
 }
