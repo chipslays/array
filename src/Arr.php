@@ -18,6 +18,7 @@ class Arr
      */
     public static function get(array $array, $keys, $default = null, string $separator = '.')
     {
+        $results = self::NOT_FOUND;
         $keys = !is_array($keys) ? explode($separator, $keys) : (array) $keys;
 
         while (($key = array_shift($keys)) !== NULL) {
@@ -25,11 +26,19 @@ class Arr
                 $array = &$array[$key];
             } else {
                 if ($key == '*') {
+                    $cnt = 0;
                     foreach ($array as $value) {
-                        $result = is_array($value) ? static::get($value, $keys, self::NOT_FOUND) : self::NOT_FOUND;
-                        if ($result !== self::NOT_FOUND) {
-                            return $result;
+                        $result = is_array($value) ? self::get($value, $keys, self::NOT_FOUND) : self::NOT_FOUND;
+                        if ($result !== self::NOT_FOUND && ++$cnt == 1) {
+                            $results = $result;
+                        } elseif ($cnt == 2) {
+                            $results = [$results, $result];
+                        } else {
+                            $results[] = $result;
                         }
+                    }
+                    if ($results !== self::NOT_FOUND) {
+                        return $results;
                     }
                 } else {
                     return $default;
