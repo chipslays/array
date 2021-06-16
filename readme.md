@@ -15,6 +15,10 @@ $ composer require chipslays/array
 
 ## Documentation
 
+> **Notice:** Class `Collection` implements `Countable` and `ArrayAccess`.
+
+### Methods
+
 #### `get(array $array, $keys [, $default = null, string $separator = '.'])`
 
 Get value from array using by dot notation key.
