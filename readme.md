@@ -3,7 +3,9 @@
 [![Tests](https://github.com/chipslays/array/actions/workflows/tests.yml/badge.svg)](https://github.com/chipslays/array/actions/workflows/tests.yml)
 ![Packagist Version](https://img.shields.io/packagist/v/chipslays/array)
 
-Library for array  manipulate.
+Simple library for array manipulate.
+
+Supported dot-notation and asterisks rules. 
 
 ## Installation
 
@@ -30,6 +32,80 @@ $array = [
 
 $name = Arr::get($array, 'user.name'); // chipslays
 $email = Arr::get($array, 'user.email', 'default@email.com'); // default@email.com 
+```
+
+```php
+$array = [
+    'foo' => [
+        'bar' => ['baz' => 1],
+        'bam' => ['baz' => 2],
+        'boo' => ['baz' => 3],
+    ],
+];
+
+$results = arr_get($array, 'foo.*.baz');
+
+// Array
+// (
+//     [0] => 1
+//     [1] => 2
+//     [2] => 3
+// )
+```
+
+```php
+$array = [
+    'foo' => [
+        'bar' => ['baz' => 1],
+    ],
+];
+
+$results = arr_get($array, 'foo.*.baz');
+
+// 1
+```
+
+```php
+$array = [
+    'foo' => [
+        'bar' => ['baz' => 1],
+        'bam' => ['baz' => 2],
+        'boo' => ['baz' => 3],
+    ],
+];
+
+$results = arr_get($array, 'foo.*');
+
+// Array
+// (
+//     [0] => Array
+//         (
+//             [baz] => 1
+//         )
+//     [1] => Array
+//         (
+//             [baz] => 2
+//         )
+//     [2] => Array
+//         (
+//             [baz] => 3
+//         )
+// )
+```
+
+```php
+$array = [
+    'foo' => [
+        'bar' => ['baz' => 1],
+    ],
+];
+
+$results = arr_get($array, 'foo.*');
+
+// Array
+// (
+//     [baz] => 1
+// )
 ```
 
 #### `set(array &$array, string $keys, $value = null [, string $separator = '.']) : void`
@@ -107,3 +183,6 @@ $array = [
 
 // todo
 ```
+
+## License 
+MIT @chipslays
