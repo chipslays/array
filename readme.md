@@ -5,7 +5,7 @@
 
 Simple library for array manipulate.
 
-Supported dot-notation and asterisks rules. 
+> Supported dot-notation and asterisks rules.
 
 ## Installation
 
@@ -184,5 +184,9 @@ $array = [
 // todo
 ```
 
+## 👀 See also
+
+* [`chipslays/collection`](https://github.com/chipslays/collection) - Simple library for manipulating array or object as collection.
+
 ## License 
-MIT @chipslays
+MIT
