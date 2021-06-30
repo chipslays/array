@@ -34,6 +34,9 @@ class Arr
                         } elseif ($cnt == 2) {
                             $results = [$results, $result];
                         } else {
+                            if ($results == self::NOT_FOUND) {
+                                $results = [];
+                            } 
                             $results[] = $result;
                         }
                     }
