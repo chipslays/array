@@ -29,15 +29,17 @@ class Arr
                     $cnt = 0;
                     foreach ($array as $value) {
                         $result = is_array($value) ? self::get($value, $keys, self::NOT_FOUND) : self::NOT_FOUND;
-                        if ($result !== self::NOT_FOUND && ++$cnt == 1) {
-                            $results = $result;
-                        } elseif ($cnt == 2) {
-                            $results = [$results, $result];
-                        } else {
-                            if ($results == self::NOT_FOUND) {
-                                $results = [];
+                        if ($result !== self::NOT_FOUND ) {
+                            if (++$cnt == 1) {
+                                $results = $result;
+                            } elseif ($cnt == 2) {
+                                $results = [$results, $result];
+                            } else {
+                                if ($results == self::NOT_FOUND) {
+                                    $results = [];
+                                }
+                                $results[] = $result;
                             }
-                            $results[] = $result;
                         }
                     }
                     if ($results !== self::NOT_FOUND) {
